@@ -1,13 +1,21 @@
 import Head from "next/head";
-import Link from "next/link";
+import Product from "../components/Products";
+import Search from "../components/Search";
+import Button from "../components/Button";
+import { spaceBottom } from "../styles/index.css";
 
 export default function Home() {
   return (
-    <div className="">
+    <>
       <Head>
         <title>voila.id | Luxury Fashion Branded</title>
       </Head>
-      <Link href={"/detail/bag"}>Detail Bag</Link>
-    </div>
+      <Search />
+      <Product />
+      <Button onClick={() => console.log("danger")} theme="wide">
+        SHOW MORE
+      </Button>
+      <div className={spaceBottom}></div>
+    </>
   );
 }
