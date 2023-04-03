@@ -74,7 +74,7 @@ const Product = () => {
             <Image
               src="/product.svg"
               alt="Picture of the author"
-              width={170}
+              width={180}
               height={280}
             />
             <div className="brand">{item.brand}</div>

@@ -22,14 +22,20 @@ export const productsList = style({
 
 export const product = style({
   color: vars.color.secondary,
-  cursor: 'pointer'
+  cursor: 'pointer',
 });
 
-
-globalStyle(`${product} .brand`, {
+export const brand = style({
   fontWeight: 'bold',
-  marginBottom: 4
+  marginBottom: 4,
+  selectors: {
+    [`${product} ~ &`]: {
+      fontWeight: 'bold',
+      marginBottom: 4
+    }
+  }
 });
+
 globalStyle(`${product} .name`, {
   marginBottom: 8,
   fontSize: 14,

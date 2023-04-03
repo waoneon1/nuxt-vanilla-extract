@@ -5,7 +5,7 @@ import { vars } from '../vars.css'
 export const backToShopWrapper = style({
   borderTop: `1px solid ${vars.color.line}`,
   borderBottom: `1px solid ${vars.color.line}`,
-  padding: '24px 0',
+  padding: '24px 50px',
   fontWeight: 'bold',
   marginBottom: 8,
   fontSize: 16,
