@@ -25,15 +25,15 @@ export const product = style({
   cursor: 'pointer',
 });
 
-export const brand = style({
+
+globalStyle(`${product} .brand`, {
   fontWeight: 'bold',
-  marginBottom: 4,
-  selectors: {
-    [`${product} ~ &`]: {
-      fontWeight: 'bold',
-      marginBottom: 4
-    }
-  }
+  marginBottom: 10,
+  overflow: "hidden",
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  lineClamp: 2,
+  WebkitBoxOrient: 'vertical'
 });
 
 globalStyle(`${product} .name`, {

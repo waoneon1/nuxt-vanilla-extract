@@ -33,7 +33,7 @@ export const navBarItems = style({
   }
 });
 
-export const cartCount= style({
+export const cartCountStyle= style({
   width: 20,
   height: 20,
   backgroundColor: vars.color.secondary,

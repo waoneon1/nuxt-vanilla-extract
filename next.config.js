@@ -5,7 +5,10 @@ const withVanillaExtract = createVanillaExtractPlugin({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: ['fakestoreapi.com'],
+  },
 };
 
 module.exports = withVanillaExtract(nextConfig);

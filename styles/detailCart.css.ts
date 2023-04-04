@@ -28,6 +28,7 @@ export const cartPrice = style({
 
 
 export const cartLeft = style({
-
+  padding: 20,
+  backgroundColor: 'white'
 });
 

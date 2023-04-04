@@ -21,9 +21,6 @@ export const cartHeading = style({
   marginTop: 50,
   marginBottom: 50
 });
-export const cart = style({
-  display: 'flex'
-});
 export const cartOrderWrapper = style({
   width: '70%',
   marginRight: 24
@@ -66,11 +63,13 @@ export const cartOrderCount = style({
 });
 export const cartOrderTrash = style({
   display: 'flex',
+  flex: 'none', 
+  minWidth: 80,
   flexDirection: 'column',
   justifyContent: 'space-between'
 });
 export const cartSummaryWrapper = style({
-  width: '30%'
+  width: '30%',
 });
 export const cartSummary = style({
   backgroundColor: 'white',
@@ -90,7 +89,12 @@ export const cartSummaryItem = style({
   fontSize: 13
 });
 export const cartSummaryTotal = style({
-
+  display: 'flex',
+  justifyContent: 'space-between',
+  fontSize: 20,
+  fontWeight: 700, 
+  marginTop: 20,
+  marginBottom: 20
 });
 
 

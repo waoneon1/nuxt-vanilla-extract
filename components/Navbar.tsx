@@ -5,14 +5,24 @@ import {
   navBarItems,
   wrapperNavbar,
   accountDropdown,
-  cartCount,
+  cartCountStyle,
 } from "./navbar.css";
 import "remixicon/fonts/remixicon.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext, Product } from "./Layout";
 
 const Navbar = () => {
   const [accountVisible, setAccountVisibility] = useState(false);
   const [login, setLogin] = useState(true);
+  const { cart, setCart } = useContext(CartContext);
+
+  function handleCartCount() {
+    let sumCart = 0;
+    cart.map((item) => {
+      sumCart += item.count;
+    });
+    return sumCart;
+  }
 
   return (
     <div className={wrapperNavbar}>
@@ -51,7 +61,9 @@ const Navbar = () => {
         </div>
         <Link className={navBarItems} href="/cart">
           <i className="ri-shopping-cart-line"></i>
-          <span className={cartCount}>2</span>
+          {handleCartCount() !== 0 && (
+            <span className={cartCountStyle}>{handleCartCount()}</span>
+          )}
         </Link>
       </div>
     </div>

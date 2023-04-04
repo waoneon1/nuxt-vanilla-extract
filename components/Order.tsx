@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import { btnWrapper, btn } from "./button.css";
 import Image from "next/image";
 import {
@@ -10,47 +10,68 @@ import {
   cartOrderTrash,
 } from "../styles/cart.css";
 import Button from "./Button";
+import { CartContext, Product } from "./Layout";
+var _ = require("lodash");
 
 interface Props {
-  onDelete: (id: Number) => void;
-  id: Number;
+  product: Product;
 }
+const Order = ({ product }: Props) => {
+  //const [productTotal, setProductTotal] = useState(1);
+  const { cart, setCart } = useContext(CartContext);
 
-const Order = ({ id, onDelete }: Props) => {
-  const [productTotal, setProductTotal] = useState(1);
+  const handleSetCart = (increment) => {
+    const createCart = [...cart].filter((item) => {
+      if (item.id === product.id) {
+        item.count += increment;
+      }
+      if (item.count <= 0 || (increment === 0 && item.id === product.id)) {
+        confirm("Sure to Delete Product?");
+        return false;
+      }
+      return item;
+    });
+    setCart(createCart);
+  };
+
   return (
     <div className={cartOrder}>
-      <Image
-        src="/cart.svg"
-        alt="Picture of the author"
-        width={85}
-        height={130}
-      />
+      <div
+        style={{
+          flex: "none",
+          backgroundImage: `url('${product.image}')`,
+          width: 100,
+          height: 130,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      ></div>
       <div className={cartOrderItem}>
-        <h4>Product Name</h4>
-        <span>Description, color, size</span>
-        <p>Shipping: 2-4 weeks</p>
+        <h4>{product.title}</h4>
+        <span style={{ paddingRight: 40, fontSize: 12, color: "gray" }}>
+          {product.description}
+        </span>
+        <p>
+          <strong>{product.category}</strong>
+        </p>
         <div className={cartOrderInc}>
-          <Button
-            onClick={() => setProductTotal(productTotal && productTotal - 1)}
-            theme="icon"
-          >
+          {/* setProductTotal(productTotal && productTotal - 1) */}
+          <Button onClick={() => handleSetCart(-1)} theme="icon">
             -
           </Button>
-          <div className={cartOrderCount}>{productTotal}</div>
-          <Button
-            onClick={() => setProductTotal(productTotal + 1)}
-            theme="icon"
-          >
+          <div className={cartOrderCount}>{product.count}</div>
+          {/* setProductTotal(productTotal + 1) */}
+          <Button onClick={() => handleSetCart(1)} theme="icon">
             +
           </Button>
         </div>
       </div>
       <div className={cartOrderTrash}>
-        <Button onClick={() => onDelete(id)} theme="iconTrash">
+        <Button onClick={() => handleSetCart(0)} theme="iconTrash">
           <i className="ri-delete-bin-line"></i>
         </Button>
-        <strong>$70</strong>
+        <strong>${product.price}</strong>
       </div>
     </div>
   );
